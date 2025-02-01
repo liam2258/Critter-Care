@@ -137,12 +137,12 @@ namespace Critter_Care.PageModels
             }
         }
 
-        [RelayCommand]
-        private Task TaskCompleted(ProjectTask task)
-        {
-            OnPropertyChanged(nameof(HasCompletedTasks));
-            return _taskRepository.SaveItemAsync(task);
-        }
+        //[RelayCommand]
+        //private Task TaskCompleted(ProjectTask task)
+        //{
+        //    OnPropertyChanged(nameof(HasCompletedTasks));
+        //    return _taskRepository.SaveItemAsync(task);
+        //}
 
         [RelayCommand]
         private Task AddTask()
@@ -156,19 +156,19 @@ namespace Critter_Care.PageModels
         private Task NavigateToTask(ProjectTask task)
             => Shell.Current.GoToAsync($"task?id={task.ID}");
 
-        [RelayCommand]
-        private async Task CleanTasks()
-        {
-            var completedTasks = Tasks.Where(t => t.IsCompleted).ToList();
-            foreach (var task in completedTasks)
-            {
-                await _taskRepository.DeleteItemAsync(task);
-                Tasks.Remove(task);
-            }
+        //[RelayCommand]
+        //private async Task CleanTasks()
+        //{
+        //    var completedTasks = Tasks.Where(t => t.IsCompleted).ToList();
+        //    foreach (var task in completedTasks)
+        //    {
+        //        await _taskRepository.DeleteItemAsync(task);
+        //        Tasks.Remove(task);
+        //    }
 
-            OnPropertyChanged(nameof(HasCompletedTasks));
-            Tasks = new(Tasks);
-            await AppShell.DisplayToastAsync("All cleaned up!");
-        }
+        //    OnPropertyChanged(nameof(HasCompletedTasks));
+        //    Tasks = new(Tasks);
+        //    await AppShell.DisplayToastAsync("All cleaned up!");
+        //}
     }
 }
